@@ -16,7 +16,7 @@ import {
 
 const champImgs = [champAshe, champAhri, champGaren];
 
-const Welcome = (props) => {
+const Welcome = props => {
   useEffect(() => {
     const welcomeImgs = document.querySelectorAll("#welcome__img__slide > img");
     let animates = [];
@@ -38,12 +38,12 @@ const Welcome = (props) => {
     welcomeImgs.forEach((e) => e.remove());
     let currItem = 0;
 
-    const autoImageSlide = () => {
+    const autoImageSlide  = () => {
       let prevItem = currItem;
       currItem = (currItem + 1) % animates.length;
 
       if (!document.hidden) {
-        animates[prevItem].next();
+        animates[prevItem].next()
       }
 
       setTimeout(() => {
