@@ -1,14 +1,18 @@
-import React from "react";
-// import { EffectFade, Mousewheel, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import SwiperCore, { EffectFade, Mousewheel, Pagination } from "swiper";
-// import {
-//   Welcome,
-//   Champion,
-//   ChampionDetail,
-//   Trailer,
-//   Credit,
-// } from "../components/home-section";
+
+import {
+  Welcome,
+  Champion,
+  ChampionDetail,
+  Trailer,
+  Credit,
+} from "../components/home-section";
+
+import { championsData } from "../assets/dummy";
+
+SwiperCore.use([Mousewheel, Pagination, EffectFade]);
 
 const swiperOptions = {
   direction: "vertical",
@@ -22,10 +26,28 @@ const swiperOptions = {
 
 const Home = () => {
   return (
-    <Swiper>
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-    </Swiper>
+    <>
+      <Swiper {...swiperOptions}>
+        <SwiperSlide>
+          {({ isActive }) => <Welcome isActive={isActive} />}
+        </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => <Champion isActive={isActive} />}
+        </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => <Trailer isActive={isActive} />}
+        </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => <Credit isActive={isActive} />}
+        </SwiperSlide>
+      </Swiper>
+      {championsData.map((item, index) => (
+        <ChampionDetail key={index} item={item} id={index} />
+      ))}
+      <div className="scroll">
+        <span>Scroll to see effect</span>
+      </div>
+    </>
   );
 };
 
